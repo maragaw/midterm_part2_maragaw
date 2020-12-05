@@ -53,8 +53,20 @@ void MyHashTable::deleteItem(string name) { //done
 
 string MyHashTable::toString() const { //done
 	stringstream ss;
+
 	for(int i = 0; i < 5; i++){
 		ss << i << ":[";
+		if(this->table[i]->size() != 0){
+			for(size_t j = 0; j < this->table[i]->size(); j++){
+				ss<<"(" << this->table[i]->at(j).first << "," << this->table[i]->at(j).second << ")";
+			}
+			
+		}
+		ss << "]\n";
+		
+	}
+	return ss.str();
+/*
 		vector<pair<string,int> >::const_iterator j= table[i]->begin();
 		while(j < table[i]->end()){
 			ss << "(" << j->first << "," << j->second << ")";
@@ -63,7 +75,9 @@ string MyHashTable::toString() const { //done
 		}
 		ss << "]\n";
 	}
+	}
   return ss.str();
+  */
 }
 
 MyHashTable::MyHashTable(const MyHashTable &orig) { //copy constructor
@@ -112,4 +126,36 @@ MyHashTable::~MyHashTable() {
 	}
 	
 	
+}
+
+int main() {
+
+  // A sample test.
+  // A sample test.
+  MyHashTable ht;
+  ht.insertItem("Peter Parker", 27437);
+  ht.insertItem("Tony Stark", 49872);
+  ht.insertItem("Bruce Banner", 39857);
+  ht.insertItem("Steven Rogers", 12984);
+  string expected = "0:[(Tony Stark,49872)]\n1:[]\n2:[(Peter Parker,27437)(Bruce Banner,39857)(Steven Rogers,12984)]\n3:[]\n4:[]\n";
+ // ASSERT_EQUALS(expected, ht.toString());
+  
+  // Write your own tests below.
+    
+    //cout<<ht.toString()<<endl;
+    
+    cout<<ht.toString()<<endl;
+    MyHashTable h2;
+    h2 = ht;
+    cout<<h2.toString()<<endl;
+    ht.deleteItem("Tony Stark");
+    cout<<ht.toString()<<endl;
+    cout<<h2.toString()<<endl; //copy constructor/assignment operator working
+
+    
+
+   
+
+
+  return 0;
 }
