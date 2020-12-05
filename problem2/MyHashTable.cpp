@@ -103,8 +103,8 @@ MyHashTable::~MyHashTable() {
 
 	
 	for(size_t i = 0; i < CAPACITY; i++){
-		
-		table[i]->clear(); //clear the vector this pointer references
+		this->table[i]->erase(this->table[i]->begin()+i);
+//this->table[i]->clear(); //clear the vector this pointer references
 		
 	}
 	
