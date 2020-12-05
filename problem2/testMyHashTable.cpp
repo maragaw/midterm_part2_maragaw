@@ -17,14 +17,18 @@ int main() {
   ASSERT_EQUALS(expected, ht.toString());
   
   // Write your own tests below.
-    /*
-    ht.toString();
-    ht.deleteItem("5lett");
-    ht.toString();
-    MyHashTable copy(ht);
-    copy.toString(); 
-    */
-    //cout<<item.first<<item.second<<endl;
+    
+    //cout<<ht.toString()<<endl;
+    
+    cout<<ht.toString()<<endl;
+    MyHashTable h2;
+    h2 = ht;
+    cout<<h2.toString()<<endl;
+    ht.deleteItem("Tony Stark");
+    cout<<ht.toString()<<endl;
+    cout<<h2.toString()<<endl;
+
+   
 
 
   return 0;

@@ -29,13 +29,25 @@ void MyHashTable::insertItem(string name, int perm) { //done
 }
 
 void MyHashTable::deleteItem(string name) { //done
-	size_t index = hash(name);
+	//size_t index = hash(name);
+	if(name == ""){
+		return;
+	}
+	if(this->table[this->hash(name)]->size() != 0){
+		for(size_t i = 0; i < this->table[this->hash(name)]->size(); i++){
+			if(name == this->table[this->hash(name)]->at(i).first)
+				this->table[this->hash(name)]->erase(this->table[this->hash(name)]->begin()+i);
+		}
+
+	}
+	/*
 	vector<pair<string,int>>::const_iterator iter;
 	for(iter = table[index]->begin(); iter !=table[index]->end();iter++){
 		if(iter->first == name) break;
 	}
 	if(iter != table[index]->end())
 		table[index]->erase(iter);
+		*/
 }
 
 string MyHashTable::toString() const { //done
@@ -54,11 +66,10 @@ string MyHashTable::toString() const { //done
 }
 
 MyHashTable::MyHashTable(const MyHashTable &orig) { //copy constructor
-	*this = orig;
-	/*
+	//*this = orig;
+	
 	vector<pair<string,int>>* newtable[CAPACITY]; //create array of pointers to vector of pairs
 
-	
 	for (size_t i = 0; i < CAPACITY; i++){ //iterate through arr of pointers
 		if(orig.table[i] == NULL){ //if original table has null pointers
 			newtable[i] = NULL; //set new table to null pointers
@@ -75,31 +86,24 @@ MyHashTable::MyHashTable(const MyHashTable &orig) { //copy constructor
 		
 
 	}
-	*/
+
+	
 }
 
 MyHashTable& MyHashTable::operator =(const MyHashTable &orig){ //memleak
-
-	if(&orig == this){
-		return (*this);
-	}
-	//if empty, then clear this instance
-	vector<pair<string,int>>* newtable [CAPACITY];
-	for (size_t i = 0; i < CAPACITY; i++){
-		newtable[i] = orig.table[i];
+	//check for self assignment
+	if(&orig != this){
+		for(size_t i = 0; i<CAPACITY; i++)
+		*table[i] = *orig.table[i];
 	}
 	return *this;
-
-
 }
 
 MyHashTable::~MyHashTable() {
 
 	
-	//vector<pair<string,int>>* tmp 
 	for(size_t i = 0; i < CAPACITY; i++){
-		//for(vector<pair<string,int>>::const_iterator j = table[i]->begin(); j < table[i]->end(); ++j){
-		//} 
+		
 		table[i]->clear(); //clear the vector this pointer references
 		
 	}
