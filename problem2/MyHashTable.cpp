@@ -24,8 +24,8 @@ size_t MyHashTable::hash(string name) const {
 void MyHashTable::insertItem(string name, int perm) { //done
 	
 	pair<string,int> newpair {name, perm};
-	size_t index = hash(name); //retrieve index
-	table[index]->push_back(newpair); //insert new pair into vector
+	//size_t index = hash(name); //retrieve index
+	this->table[this->hash(name)]->push_back(newpair); //insert new pair into vector
 }
 
 void MyHashTable::deleteItem(string name) { //done
