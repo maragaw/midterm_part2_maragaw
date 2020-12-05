@@ -4,7 +4,7 @@ CXX=clang++
 # We have -Wno-unused-parameter so that the compiler
 # doesn't complain too much about our stubs.
 
-CXXFLAGS = -std=c++11 -Wall -Wextra -Wno-unused-parameter -Wno-unused-private-field
+CXXFLAGS = -std=c++11 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-private-field
 
 # Change to this before final submission:
 
