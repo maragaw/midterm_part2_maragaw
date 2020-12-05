@@ -6,7 +6,8 @@ using namespace std;
 // Default constructor. Do not modiify.
 MyHashTable::MyHashTable() {
   for (size_t i = 0; i < CAPACITY; i++) {
-    table[i] = new vector<pair<string, int>>;
+    vector<pair<string, int> >* vv = new vector<pair<string, int> >;
+	this->table[i] = vv;
   }
 }
 
@@ -23,7 +24,7 @@ size_t MyHashTable::hash(string name) const {
 
 void MyHashTable::insertItem(string name, int perm) { //done
 	
-	pair<string,int> newpair {name, perm};
+	pair<string,int> newpair (name, perm);
 	//size_t index = hash(name); //retrieve index
 	this->table[this->hash(name)]->push_back(newpair); //insert new pair into vector
 }
@@ -54,7 +55,7 @@ string MyHashTable::toString() const { //done
 	stringstream ss;
 	for(int i = 0; i < 5; i++){
 		ss << i << ":[";
-		vector<pair<string,int>>::const_iterator j= table[i]->begin();
+		vector<pair<string,int> >::const_iterator j= table[i]->begin();
 		while(j < table[i]->end()){
 			ss << "(" << j->first << "," << j->second << ")";
 			++j;
@@ -68,7 +69,7 @@ string MyHashTable::toString() const { //done
 MyHashTable::MyHashTable(const MyHashTable &orig) { //copy constructor
 	//*this = orig;
 	
-	vector<pair<string,int>>* newtable[CAPACITY]; //create array of pointers to vector of pairs
+	vector<pair<string,int> >* newtable[CAPACITY]; //create array of pointers to vector of pairs
 
 	for (size_t i = 0; i < CAPACITY; i++){ //iterate through arr of pointers
 		if(orig.table[i] == NULL){ //if original table has null pointers
@@ -79,8 +80,8 @@ MyHashTable::MyHashTable(const MyHashTable &orig) { //copy constructor
 		cout<<newtable[i]<<endl;
 		cout<<orig.table[i]<<endl;
 		
-		for(vector<pair<string,int>>::const_iterator iter = orig.table[i]->begin(); iter < orig.table[i]->end(); ++iter){ //using iterator of orig table vectors
-			pair<string,int> newpair {iter->first, iter->second}; //create new pair with name and perm of orig table vectors using iter
+		for(vector<pair<string,int> >::const_iterator iter = orig.table[i]->begin(); iter < orig.table[i]->end(); ++iter){ //using iterator of orig table vectors
+			pair<string,int> newpair (iter->first, iter->second); //create new pair with name and perm of orig table vectors using iter
 			newtable[i]->push_back(newpair);
 		}
 		
@@ -101,11 +102,14 @@ MyHashTable& MyHashTable::operator =(const MyHashTable &orig){ //memleak
 
 MyHashTable::~MyHashTable() {
 
-	
+
 	for(size_t i = 0; i < CAPACITY; i++){
-		this->table[i]->erase(this->table[i]->begin()+i);
+		//delete[] table[i];
+		delete table[i];
+		//this->table[i]->erase(this->table[i]->begin()+i);
 //this->table[i]->clear(); //clear the vector this pointer references
 		
 	}
+	
 	
 }

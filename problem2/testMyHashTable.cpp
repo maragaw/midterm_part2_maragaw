@@ -26,7 +26,9 @@ int main() {
     cout<<h2.toString()<<endl;
     ht.deleteItem("Tony Stark");
     cout<<ht.toString()<<endl;
-    cout<<h2.toString()<<endl;
+    cout<<h2.toString()<<endl; //copy constructor/assignment operator working
+
+    
 
    
 
