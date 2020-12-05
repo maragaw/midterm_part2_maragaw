@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include "MySorting.h"
 
 using namespace std;
