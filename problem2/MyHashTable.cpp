@@ -115,8 +115,7 @@ MyHashTable& MyHashTable::operator =(const MyHashTable &orig){ //memleak
 }
 
 MyHashTable::~MyHashTable() {
-	//cout<<"Destructor Called"<<endl;
-/*
+
 
 	for(size_t i = 0; i < CAPACITY; i++){
 		//delete[] table[i];
@@ -125,6 +124,5 @@ MyHashTable::~MyHashTable() {
 //this->table[i]->clear(); //clear the vector this pointer references
 		
 	}
-	*/
 	
 }
