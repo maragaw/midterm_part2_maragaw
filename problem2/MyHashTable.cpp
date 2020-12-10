@@ -115,7 +115,7 @@ MyHashTable& MyHashTable::operator =(const MyHashTable &orig){ //memleak
 }
 
 MyHashTable::~MyHashTable() {
-	cout<<"Destructor Called"<<endl;
+	//cout<<"Destructor Called"<<endl;
 /*
 
 	for(size_t i = 0; i < CAPACITY; i++){
