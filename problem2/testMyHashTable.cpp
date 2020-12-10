@@ -19,7 +19,7 @@ int main() {
   // Write your own tests below.
     
     //cout<<ht.toString()<<endl;
-    
+    /*
     cout<<ht.toString()<<endl;
     MyHashTable h2;
     h2 = ht;
@@ -28,7 +28,7 @@ int main() {
     cout<<ht.toString()<<endl;
     cout<<h2.toString()<<endl; //copy constructor/assignment operator working
 
-    
+    */
 
    
 
